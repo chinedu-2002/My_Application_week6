@@ -8,7 +8,7 @@ Time spent: 60 hours spent in total
 
 ## Summary
 
-heroes app is an android app that displays a random character from the Pokémon API."
+The Heroes app is an Android app that displays a random character from the Pokémon API.
 
 If I had to describe this project in three (3) emojis, they would be: super strength, happy, ready 
 
