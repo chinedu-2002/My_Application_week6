@@ -2,6 +2,8 @@ package com.example.my_application_week6
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,12 +12,18 @@ import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import okhttp3.Headers
 import kotlin.random.Random
+import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var pokemonImageView: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        pokemonImageView = findViewById(R.id.pokemonImageView)
+        val button = findViewById<Button>(R.id.next)
+        setupButton(button)
         fetchHeroesImage()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -26,10 +34,25 @@ class MainActivity : AppCompatActivity() {
     private fun fetchHeroesImage() {
         val client = AsyncHttpClient()
         var choice = Random.nextInt(60)
-        client["https://pokeapi.co/api/v2/pokemon/$choice", object : JsonHttpResponseHandler() {
+        val heroesImageURL = "https://pokeapi.co/api/v2/pokemon/$choice"
+        Log.d("heroesImageURL", "heroes image URL set: $heroesImageURL")
+
+        client[heroesImageURL, object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
-                Log.d("Heroes", "response successful")
+                Log.d("Heroes", "response successful: $json")
+
+                val imageUrl = json.jsonObject
+                    .getJSONObject("sprites")
+                    .getString("front_default")
+
+
+                Glide.with(this@MainActivity)
+                    .load(imageUrl)
+                    .fitCenter()
+                    .into(pokemonImageView)
             }
+
+
 
             override fun onFailure(
                 statusCode: Int,
@@ -41,6 +64,13 @@ class MainActivity : AppCompatActivity() {
             }
         }]
 
+
+    }
+
+    private fun setupButton(button: Button) {
+        button.setOnClickListener {
+            fetchHeroesImage()
+        }
 
     }
 
