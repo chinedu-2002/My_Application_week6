@@ -40,7 +40,7 @@ My chosen API for this project is the Pokémon API.
 
 Here's a video / GIF that demos all of the app's implemented features:
 
-![Activiicties for fun :D]()
+![Activiicties for fun :D](cal_andriod_practice_week6.gif)
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Demo' width='' alt='Video Demo' />
 
