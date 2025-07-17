@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,12 +17,14 @@ import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
     private lateinit var pokemonImageView: ImageView
+    private lateinit var pokemonName: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         pokemonImageView = findViewById(R.id.pokemonImageView)
+        pokemonName = findViewById(R.id.pokemonName)
         val button = findViewById<Button>(R.id.next)
         setupButton(button)
         fetchHeroesImage()
@@ -44,6 +47,12 @@ class MainActivity : AppCompatActivity() {
                 val imageUrl = json.jsonObject
                     .getJSONObject("sprites")
                     .getString("front_default")
+
+                val name = json.jsonObject
+                    .getString("name")
+                pokemonName.text = name
+
+
 
 
                 Glide.with(this@MainActivity)
