@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.my_application_week6"
+    namespace = "com.example.my_application_week7"
     compileSdk = 36
 
     defaultConfig {
@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation("com.codepath.libraries:asynchttpclient:2.2.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.androidx.recyclerview)
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
