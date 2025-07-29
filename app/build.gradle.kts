@@ -42,6 +42,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation("com.google.android.gms:play-services-base:18.2.0")
     implementation("com.codepath.libraries:asynchttpclient:2.2.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation(libs.androidx.recyclerview)
