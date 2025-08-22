@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Generated data files
+flood_data.csv
+flood_data.json
